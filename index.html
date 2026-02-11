@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs4You - Remote Tech Opportunities | Curated by Mohammad Shafee</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: linear-gradient(135deg, #0a1628 0%, #1a0b3d 50%, #2d1b69 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Profile Bar */
+        .profile-bar {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px 30px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-info-bar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .profile-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .profile-text h4 {
+            font-size: 1.1em;
+            color: #fff;
+            margin-bottom: 3px;
+        }
+
+        .profile-text p {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .profile-linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #0077b5 0%, #005582 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3);
+            white-space: nowrap;
+        }
+
+        .profile-linkedin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 119, 181, 0.5);
+        }
+
+        /* Main Landing Page */
+        .landing-section {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .main-logo {
+            font-size: 4em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .main-tagline {
+            font-size: 1.8em;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 15px;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .main-description {
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 800px;
+            margin: 0 auto 50px;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        /* Company Buttons Section */
+        .companies-section {
+            margin-top: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease 0.8s backwards;
+        }
+
+        .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        /* Company Card */
+        .company-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 50px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease backwards;
+        }
+
+        .company-card:nth-child(1) { animation-delay: 1s; }
+        .company-card:nth-child(2) { animation-delay: 1.2s; }
+        .company-card:nth-child(3) { animation-delay: 1.4s; }
+
+        .company-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #ff8e53, #667eea, #764ba2);
+            background-size: 200% 100%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        .company-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+        }
+
+        .company-card.active {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        /* Coming Soon - Glowing/Blinking Effect */
+        .company-card.coming-soon {
+            border: 2px solid transparent;
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                border-color: rgba(255, 107, 107, 0.3);
+                box-shadow: 0 0 20px rgba(255, 107, 107, 0.2),
+                            0 0 40px rgba(255, 107, 107, 0.1);
+            }
+            50% {
+                border-color: rgba(255, 107, 107, 0.8);
+                box-shadow: 0 0 30px rgba(255, 107, 107, 0.5),
+                            0 0 60px rgba(255, 107, 107, 0.3),
+                            0 0 80px rgba(255, 107, 107, 0.2);
+            }
+        }
+
+        .company-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .company-name {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .company-description {
+            font-size: 1.1em;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .company-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .coming-soon-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1em;
+            animation: blink 1.5s ease-in-out infinite;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Jobs Display Section */
+        .jobs-display {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .jobs-display.active {
+            display: block;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .company-hero {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .company-hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Stats */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .stat-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Job Cards */
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .job-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #ff8e53, #667eea, #764ba2);
+            background-size: 200% 100%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .job-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .job-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .job-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+
+        .job-title {
+            font-size: 1.5em;
+            color: #fff;
+            font-weight: 600;
+            flex-grow: 1;
+        }
+
+        .job-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .job-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .apply-btn {
+            display: block;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+            text-align: center;
+            font-size: 1.05em;
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 107, 107, 0.6);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .disclaimer {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 15px;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .profile-bar {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-info-bar {
+                flex-direction: column;
+            }
+
+            .main-logo {
+                font-size: 2.5em;
+            }
+
+            .main-tagline {
+                font-size: 1.3em;
+            }
+
+            .companies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .jobs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Profile Bar -->
+        <div class="profile-bar">
+            <div class="profile-info-bar">
+                <div class="profile-avatar">MS</div>
+                <div class="profile-text">
+                    <h4>Curated by Mohammad Shafee</h4>
+                    <p>Helping talented professionals connect with top remote tech opportunities</p>
+                </div>
+            </div>
+            <a href="https://www.linkedin.com/in/mohammad-shafee05/" target="_blank" class="profile-linkedin-btn">
+                💼 Connect on LinkedIn
+            </a>
+        </div>
+
+        <!-- Landing Page -->
+        <div id="landingPage" class="landing-section">
+            <h1 class="main-logo">Jobs4You</h1>
+            <p class="main-tagline">Your Gateway to Elite Remote Tech Opportunities</p>
+            <p class="main-description">
+                Discover curated job openings from top tech companies worldwide. 100% remote positions with competitive salaries. 
+                Skills matter more than location or years of experience.
+            </p>
+
+            <div class="companies-section">
+                <h2 class="section-title">🚀 Explore Companies</h2>
+                <p class="section-subtitle">Click on any company to view available positions</p>
+
+                <div class="companies-grid">
+                    <!-- Turing - Active -->
+                    <div class="company-card" onclick="showCompany('turing')">
+                        <div class="company-icon">🤖</div>
+                        <h3 class="company-name">TURING</h3>
+                        <p class="company-description">
+                            AI-powered platform connecting developers with elite US companies. Work with OpenAI, Anthropic, Google, Meta and more.
+                        </p>
+                        <span class="company-badge">7 Positions Available</span>
+                    </div>
+
+                    <!-- Company 2 - Coming Soon -->
+                    <div class="company-card coming-soon">
+                        <div class="company-icon">🚀</div>
+                        <h3 class="company-name">TOPTAL</h3>
+                        <p class="company-description">
+                            Premium freelance network for top 3% of tech talent. High-paying projects with Fortune 500 companies.
+                        </p>
+                        <span class="coming-soon-badge">🔥 COMING SOON</span>
+                    </div>
+
+                    <!-- Company 3 - Coming Soon -->
+                    <div class="company-card coming-soon">
+                        <div class="company-icon">💼</div>
+                        <h3 class="company-name">REMOTE.CO</h3>
+                        <p class="company-description">
+                            Curated remote job listings from verified companies. Full-time positions in tech, design, marketing and more.
+                        </p>
+                        <span class="coming-soon-badge">🔥 COMING SOON</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Turing Jobs Display -->
+        <div id="turingJobs" class="jobs-display">
+            <button class="back-button" onclick="backToHome()">← Back to Companies</button>
+
+            <!-- Hero Image -->
+            <div class="company-hero">
+                <img src="turing.jpg" alt="Turing Remote Tech Opportunities" class="company-hero-image">
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-icon">🌍</div>
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Remote Work</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💼</div>
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Open Positions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🚀</div>
+                    <div class="stat-number">Fast</div>
+                    <div class="stat-label">Application Process</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-number">Top</div>
+                    <div class="stat-label">Competitive Pay</div>
+                </div>
+            </div>
+
+            <!-- Jobs Grid -->
+            <div class="jobs-grid">
+                <!-- Job 1 -->
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="job-number">1</div>
+                        <h3 class="job-title">SWE Bench Data Engineer</h3>
+                    </div>
+                    <p class="job-description">Build scalable data pipelines and ML workflows. Perfect for Python and SQL experts who want to work on cutting-edge AI infrastructure.</p>
+                    <div class="job-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">ML Pipelines</span>
+                        <span class="tag">Remote</span>
+                    </div>
+                    <a href="https://developers.turing.com/r/TmbQDT3H-c" target="_blank" class="apply-btn">
+                        🚀 Apply Now
+                    </a>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="job-number">2</div>
+                        <h3 class="job-title">Senior SWE – LLM Evaluation</h3>
+                    </div>
+                    <p class="job-description">Evaluate and improve large language models. Cutting-edge AI work with frontier models. (US, Canada, Western Europe only)</p>
+                    <div class="job-tags">
+                        <span class="tag">LLMs</span>
+                        <span class="tag">AI/ML</span>
+                        <span class="tag">Senior</span>
+                        <span class="tag">US/CA/WEU</span>
+                    </div>
+                    <a href="https://developers.turing.com/r/1mX69OCeEU" target="_blank" class="apply-btn">
+                        🚀 Apply Now
+                    </a>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="job-number">3</div>
+                        <h3 class="job-title">Technical Content Writer</h3>
+                    </div>
+                    <p class="job-description">Create engaging technical content for AI and developer audiences. Perfect for those who love explaining complex tech concepts.</p>
+                    <div class="job-tags">
+                        <span class="tag">Writing</span>
+                        <span class="tag">AI Content</span>
+                        <span class="tag">Technical Docs</span>
+                        <span class="tag">Remote</span>
+                    </div>
+                    <a href="https://developers.turing.com/r/Q6S3C65yqu" target="_blank" class="apply-btn">
+                        🚀 Apply Now
+                    </a>
+                </div>
+
+                <!-- Job 4 -->
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="job-number">4</div>
+                        <h3 class="job-title">Physics Expert</h3>
+                    </div>
+                    <p class="job-description">Apply your physics expertise to advanced AI and research projects. Work on cutting-edge scientific AI applications. (Master's or PhD required)</p>
+                    <div class="job-tags">
+                        <span class="tag">Physics</span>
+                        <span class="tag">Master's/PhD</span>
+                        <span class="tag">Research</span>
+                        <span class="tag">Remote</span>
+                    </div>
+                    <a href="https://developers.turing.com/r/gHwc48-wzL" target="_blank" class="apply-btn">
+                        🚀 Apply Now
+                    </a>
+                </div>
+
+                <!-- Job 5 -->
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="job-number">5</div>
+                        <h3 class="job-title">Mathematics Expert</h3>
+                    </div>
+                    <p class="job-description">Tackle complex AI algorithms, optimization problems, and mathematical modeling for frontier AI systems. (Master's or PhD required)</p>
+                    <div class="job-tags">
+                        <span class="tag">Mathematics</span>
+                        <span class="tag">Master's/PhD</span>
+                        <span class="tag">AI Algorithms</span>
+                        <span class="tag">Remote</span>
+                    </div>
+                    <a href="https://developers.turing.com/r/r62z8X5nPr" target="_blank" class="apply-btn">
+                        🚀 Apply Now
+                    </a>
+                </div>
+
+                <!-- Job 6 -->
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="job-number">6</div>
+                        <h3 class="job-title">Clinical Data Expert</h3>
+                    </div>
+                    <p class="job-description">Drive impact in healthcare AI using your clinical data expertise. Help match patients with clinical trials. (US-based only)</p>
+                    <div class="job-tags">
+                        <span class="tag">Healthcare AI</span>
+                        <span class="tag">Clinical Data</span>
+                        <span class="tag">US Only</span>
+                        <span class="tag">Remote</span>
+                    </div>
+                    <a href="https://developers.turing.com/r/NHbna-JN9b" target="_blank" class="apply-btn">
+                        🚀 Apply Now
+                    </a>
+                </div>
+
+                <!-- Job 7 -->
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="job-number">7</div>
+                        <h3 class="job-title">AI Training – Biology</h3>
+                    </div>
+                    <p class="job-description">Train AI models using your biology domain knowledge. Shape the future of biological AI applications. (Non-USA)</p>
+                    <div class="job-tags">
+                        <span class="tag">Biology</span>
+                        <span class="tag">AI Training</span>
+                        <span class="tag">Non-USA</span>
+                        <span class="tag">Remote</span>
+                    </div>
+                    <a href="https://developers.turing.com/r/u9QclwPzt5" target="_blank" class="apply-btn">
+                        🚀 Apply Now
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="disclaimer">
+                <strong>⚠️ Important Disclaimer:</strong> I am not an employee or official recruiter for any listed company. This platform is created independently to share curated job opportunities. Referral links may help your application get noticed faster.
+            </div>
+            <p>All positions are posted and managed by their respective companies. Jobs4You is a curated platform to help you discover remote opportunities.</p>
+            <p style="margin-top: 25px; color: rgba(255, 255, 255, 0.9);">Made with 💜 by Mohammad Shafee</p>
+        </div>
+    </div>
+
+    <script>
+        // Show company jobs
+        function showCompany(company) {
+            if (company === 'turing') {
+                document.getElementById('landingPage').style.display = 'none';
+                document.getElementById('turingJobs').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Back to home
+        function backToHome() {
+            document.getElementById('landingPage').style.display = 'block';
+            document.getElementById('turingJobs').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Track button clicks
+        document.querySelectorAll('.apply-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const jobTitle = this.closest('.job-card').querySelector('.job-title').textContent;
+                console.log('Application clicked:', jobTitle);
+                // You can add Google Analytics tracking here
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
